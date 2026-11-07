@@ -8,7 +8,7 @@ The Nunn Group LLC website, hosted on GitHub Pages. Built November 6, 2026.
 - `404.html`: shown for broken or old links
 - `assets/css/site.css`: colors, fonts, and layout
 - `assets/img`: logos, photos, the DBE seal, and the social preview image (`og-image.jpg`)
-- `assets/video`: the 55-second overview video (MP4 and WebM) and its cover image
+- `assets/video`: the 1-minute overview video (MP4 and WebM) and its cover image
 - `assets/fonts`: the Geist typeface (free to use under the SIL Open Font License, included as `OFL.txt`)
 - `favicon.ico`, `apple-touch-icon.png`: browser tab and phone home screen icons
 - `robots.txt` and `sitemap.xml`: for search engines
@@ -39,7 +39,7 @@ The "Ask for our capabilities statement" button fills in a request on the contac
 To hide the seal, open `index.html`, find `DBE SEAL START`, and delete everything from that line down to and including the `DBE SEAL END` line. Commit the change.
 
 ## Overview video
-The "Watch the overview" button on Marc's photo plays `assets/video/nunn-group-overview.mp4`. To swap in a new version, upload new files with the same names. If the length changes, also update "0:55" on the button, "55 seconds" in the video window, the transcript under the video, and the `duration` in the VideoObject data near the top of `index.html`. To remove the video, delete the line in `index.html` that starts with `<button type="button" class="play"`.
+The "Watch the overview" button on Marc's photo plays `assets/video/nunn-group-overview.mp4`. To swap in a new version, upload new files with the same names. If the length changes, also update "1:00" on the button, "1 minute" in the video window, the transcript under the video, and the `duration` in the VideoObject data near the top of `index.html`. To remove the video, delete the line in `index.html` that starts with `<button type="button" class="play"`.
 
 ## Analytics
 Off until a Google Analytics 4 Measurement ID is added. In `index.html`, find `GA_MEASUREMENT_ID = ''` near the top and paste the ID between the quotes (it looks like `G-XXXXXXXXXX`). It then records visits, plus these events: booking clicks (`book_call_click`), messages sent (`generate_lead`), phone and email clicks (`phone_click`, `email_click`), growth check results (`growth_check_complete`, `growth_check_send`), video plays (`video_play`), and capabilities statement requests (`capabilities_request`).
