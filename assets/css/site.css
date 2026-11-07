@@ -273,7 +273,7 @@ button{font:inherit}
 .book-s{margin-top:8px;color:var(--ink-2)}
 .book .btn{margin-top:24px}
 .reach{margin-top:24px}
-.reach li{display:grid;grid-template-columns:80px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:56px;padding:4px 0;border-bottom:1px solid rgba(16,20,43,.1)}
+.reach li{display:grid;grid-template-columns:96px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:56px;padding:4px 0;border-bottom:1px solid rgba(16,20,43,.1)}
 .reach li:last-child{border-bottom:0}
 .reach-k{font-size:var(--fs-label);font-weight:600;color:var(--ink-3)}
 .reach-v{display:flex;align-items:center;min-height:44px;font-weight:600;color:var(--ink);text-decoration:none;overflow-wrap:anywhere}

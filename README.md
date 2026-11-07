@@ -24,7 +24,10 @@ The Nunn Group LLC website, hosted on GitHub Pages. Built November 6, 2026.
 Upload a new file into `assets/img` with the same file name as the one it replaces. Keep the same shape: the lakefront photo is portrait (4 by 5) and the headshot is landscape (3 by 2). For sharp results on phones and Retina screens, use at least 1600 pixels wide for the lakefront photo and 2000 for the headshot.
 
 ## Contact form
-Messages go through Formspree. In `index.html`, search for `YOUR_FORM_ID` and replace it with the code from Formspree (the part after `/f/` in the form's address). Until then, the Send button opens the visitor's email app with the message ready to send.
+Messages go through Formspree (form code `maeezebj`), which forwards each one to marc@nunngroupllc.com. To switch to a different Formspree form, search `index.html` for `maeezebj` and replace it with the new code.
+
+## Contact card
+The Contact section links to Marc's Blinq card at https://blinq.me/SRlIHIAqhaoJ4bfBvpeN. If the card changes, search `index.html` for `blinq.me` and replace the link.
 
 ## Booking
 Every booking button links to https://calendly.com/nunngroup/30min. Calendly opens in a pop-up on the page once its script loads; if it's blocked, the button opens Calendly in a new tab. To change the link, search `index.html` for `calendly.com/nunngroup/30min` and replace every match.
