@@ -342,6 +342,15 @@ button{font:inherit}
 .lost h1{font-size:var(--fs-h2);line-height:1.02;font-weight:720;letter-spacing:-.04em}
 .lost .cta-row{margin-top:16px}
 
+/* Opening logo animation: shown only when the head script sets .intro-on (once per visit, never with reduced motion) */
+.intro{display:none}
+html.intro-on .intro{display:block;position:fixed;inset:0;z-index:200;background:#0A0E22;animation:ngi-failsafe 0s 5s forwards}
+html.intro-on .intro svg{position:absolute;inset:0;display:block}
+html.intro-on .brand img{visibility:hidden;animation:ngi-show 0s 5s forwards}
+html.intro-on.intro-land .brand img{visibility:visible}
+@keyframes ngi-failsafe{to{visibility:hidden;opacity:0;pointer-events:none}}
+@keyframes ngi-show{to{visibility:visible}}
+
 /* Scroll reveal */
 .rv{opacity:0;transform:translateY(16px)}
 .rv.in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}

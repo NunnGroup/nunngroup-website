@@ -41,5 +41,8 @@ To hide the seal, open `index.html`, find `DBE SEAL START`, and delete everythin
 ## Overview video
 The "Watch the overview" button on Marc's photo plays `assets/video/nunn-group-overview.mp4`. To swap in a new version, upload new files with the same names. If the length changes, also update "1:00" on the button, "1 minute" in the video window, the transcript under the video, and the `duration` in the VideoObject data near the top of `index.html`. To remove the video, delete the line in `index.html` that starts with `<button type="button" class="play"`.
 
+## Opening animation
+When someone opens the homepage, the logo animates (the sun rises, the N is etched through it) and then glides into the top-left corner. It takes about 3 seconds and plays once per visit. Any tap, click, scroll, or key press skips it. It never plays for visitors who have "reduce motion" turned on, or for search engines. To watch it again, open https://www.nunngroupllc.com/?intro. To turn it off, open `index.html`, find `Opening logo animation` near the top, delete the line right below it, and commit the change.
+
 ## Analytics
 Off until a Google Analytics 4 Measurement ID is added. In `index.html`, find `GA_MEASUREMENT_ID = ''` near the top and paste the ID between the quotes (it looks like `G-XXXXXXXXXX`). It then records visits, plus these events: booking clicks (`book_call_click`), messages sent (`generate_lead`), phone and email clicks (`phone_click`, `email_click`), growth check results (`growth_check_complete`, `growth_check_send`), video plays (`video_play`), and capabilities statement requests (`capabilities_request`).
