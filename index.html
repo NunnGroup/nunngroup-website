@@ -22,9 +22,9 @@
 <link rel="icon" href="assets/img/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/geist-variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v=20261112">
 <!-- Opening logo animation. To turn it off, delete the next line. -->
-<script>try{var q=/[?&]intro\b/.test(location.search);if(!navigator.webdriver&&(q||!sessionStorage.getItem('ng-intro'))&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')}catch(e){}</script>
+<script>try{var q=/[?&]intro\b/.test(location.search),seen=+localStorage.getItem('ng-intro')||0;if(!navigator.webdriver&&(q||(!location.hash&&Date.now()-seen>2592e6))&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')}catch(e){}</script>
 <script>
   // Google Analytics 4: off until an ID is pasted between the quotes, like 'G-XXXXXXXXXX'
   window.GA_MEASUREMENT_ID = '';
@@ -115,7 +115,7 @@
       </div>
       <button type="button" class="vdlg-x" id="vid-close">Close</button>
     </div>
-    <video class="vdlg-v" id="vid" controls playsinline preload="none" data-poster="assets/video/nunn-group-overview-poster.jpg" width="1920" height="1080">
+    <video class="vdlg-v" id="vid" controls playsinline preload="none" data-poster="assets/video/nunn-group-overview-poster.jpg" data-tall="assets/video/nunn-group-overview-tall" width="1920" height="1080">
       <source src="assets/video/nunn-group-overview.mp4" type="video/mp4">
       <source src="assets/video/nunn-group-overview.webm" type="video/webm">
     </video>
@@ -352,7 +352,7 @@
       <div class="prime-copy">
         <p class="prime-k">Larger engagements</p>
         <h3>One accountable lead, plus the right specialists.</h3>
-        <p>For multi-part projects, Nunn Group serves as the prime contractor and brings in vetted specialists, all working from one plan with one point of&nbsp;contact.</p>
+        <p>For multi-part projects, Nunn Group leads the project and brings in vetted specialists, all working from one plan with one point of&nbsp;contact.</p>
       </div>
       <div class="prime-side">
         <p class="prime-k">Specialist support&nbsp;includes</p>
@@ -532,7 +532,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <p>© 2026 Nunn Group LLC · Chicago,&nbsp;Illinois</p>
+      <p>© <span class="yr">2026</span> Nunn Group LLC · Chicago,&nbsp;Illinois</p>
       <a href="privacy.html">Privacy</a>
     </div>
   </div>
@@ -631,6 +631,7 @@
     else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email.value.trim())){bad=fields.email;problem='Enter a valid email address, like name@company.com.';}
     else if(!fields.msg.value.trim()){bad=fields.msg;problem='Add a sentence or two about what you need.';}
     if(bad){
+      bad.parentNode.appendChild(err);   // show the message right under the field it is about
       err.textContent=problem;err.hidden=false;status.hidden=true;
       bad.setAttribute('aria-invalid','true');bad.setAttribute('aria-describedby','form-err');bad.focus();
       return;
@@ -784,9 +785,22 @@
       return get.then(function(b){vid.src=URL.createObjectURL(b);vid.load();return vid.play();});
     }
     function fail(){useBlob().catch(showAlt);}
+    // Phones held upright get the tall cut of the video, which has larger type
+    var tallBase=vid.getAttribute('data-tall'),tallOn=false;
+    function useTall(){
+      if(tallOn||!tallBase||window.NG_VIDEO_B64||!window.matchMedia||!window.matchMedia('(max-width:640px) and (orientation:portrait)').matches)return;
+      tallOn=true;
+      var list=vid.querySelectorAll('source'),i;
+      for(i=0;i<list.length;i++){list[i].setAttribute('src',tallBase+(list[i].getAttribute('type')==='video/webm'?'.webm':'.mp4'));}
+      vid.setAttribute('data-poster',tallBase+'-poster.jpg');vid.removeAttribute('poster');
+      vid.setAttribute('width','1080');vid.setAttribute('height','1350');vid.classList.add('is-tall');
+      var alt=vidAlt&&vidAlt.querySelector('a');if(alt)alt.setAttribute('href',tallBase+'.mp4');
+      vid.load();
+    }
     var srcs=vid.querySelectorAll('source');
     if(srcs.length)srcs[srcs.length-1].addEventListener('error',fail);
     playOpen.addEventListener('click',function(){
+      useTall();
       if(!vid.getAttribute('poster')&&vid.getAttribute('data-poster'))vid.setAttribute('poster',vid.getAttribute('data-poster'));
       if(typeof dlg.showModal==='function'){dlg.showModal();}else{dlg.setAttribute('open','');}
       if(window.NG_VIDEO_B64&&!blobTried){useBlob().catch(showAlt);track('video_play');return;}
@@ -914,22 +928,22 @@
       var k = clamp(tip.x / 211, 0, 1); sg.setAttribute('fill', 'rgb(' + Math.round(lerp(255, 166, k)) + ',' + Math.round(lerp(90, 175, k)) + ',' + Math.round(lerp(109, 255, k)) + ')'); }
     else { sp.setAttribute('opacity', 0); sg.setAttribute('opacity', 0); }
   }
-  var tc = 0, last = null, speed = 1, done = false;
+  var tc = 0, last = null, speed = 1.9, done = false;   // 1.9 = the whole animation in about 1.5 seconds
   function finish() {
     if (done) return; done = true;
-    try { sessionStorage.setItem('ng-intro', '1'); } catch (e) {}
+    try { localStorage.setItem('ng-intro', String(Date.now())); } catch (e) {}   // shown again after 30 days
     root.classList.remove('intro-on', 'intro-land'); if (host.parentNode) host.parentNode.removeChild(host);
     ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (ev) { window.removeEventListener(ev, skip, true); });
     window.removeEventListener('resize', onResize);
   }
-  function skip() { if (tc < GL0) tc = GL0; speed = 2.2; }
+  function skip() { if (tc < GL0) tc = GL0; speed = 3; }
   ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (ev) { window.addEventListener(ev, skip, { capture: true, passive: true }); });
   // phones fire resize when the address bar slides; only a real width change (rotation) ends the intro early
   function onResize() { if (Math.abs(window.innerWidth - W) > 40) finish(); }
   window.addEventListener('resize', onResize);
   function frame(ts) {
     if (done) return;
-    if (last !== null) tc += Math.min(.05, (ts - last) / 1000) * speed;
+    if (last !== null) tc += Math.min(.1, (ts - last) / 1000) * speed;   // keeps real time down to 10 frames a second
     last = ts; seek(tc);
     if (tc >= GL1 - .02) root.classList.add('intro-land');   // swap in the real header logo once the gliding one is on it
     if (tc >= GL1) finish(); else requestAnimationFrame(frame);
@@ -937,5 +951,6 @@
   seek(0); requestAnimationFrame(frame);
 })();
 </script>
+<script>(function(){var y=document.querySelectorAll('.yr'),i;for(i=0;i<y.length;i++)y[i].textContent=new Date().getFullYear();})();</script>
 </body>
 </html>

@@ -344,9 +344,9 @@ button{font:inherit}
 
 /* Opening logo animation: shown only when the head script sets .intro-on (once per visit, never with reduced motion) */
 .intro{display:none}
-html.intro-on .intro{display:block;position:fixed;inset:0;z-index:200;background:#0A0E22;animation:ngi-failsafe 0s 5s forwards}
+html.intro-on .intro{display:block;position:fixed;inset:0;z-index:200;background:#0A0E22;animation:ngi-failsafe 0s 3s forwards}
 html.intro-on .intro svg{position:absolute;inset:0;display:block}
-html.intro-on .brand img{visibility:hidden;animation:ngi-show 0s 5s forwards}
+html.intro-on .brand img{visibility:hidden;animation:ngi-show 0s 3s forwards}
 html.intro-on.intro-land .brand img{visibility:visible}
 @keyframes ngi-failsafe{to{visibility:hidden;opacity:0;pointer-events:none}}
 @keyframes ngi-show{to{visibility:visible}}
@@ -423,3 +423,11 @@ html.intro-on.intro-land .brand img{visibility:visible}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
+
+/* Form errors: the red outline stays while the field has focus, and the message sits under its field */
+.field input[aria-invalid="true"]:focus,.field textarea[aria-invalid="true"]:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(176,23,45,.18)}
+.field .form-err{margin:0}
+/* Touch screens wide enough to show the top menu (an iPad held sideways): full-size tap targets */
+@media (pointer:coarse){.nav a{display:inline-flex;align-items:center;min-height:44px}}
+/* Tall cut of the overview video, shown on phones held upright */
+.vdlg-v.is-tall{aspect-ratio:4/5;max-height:calc(100dvh - 108px)}

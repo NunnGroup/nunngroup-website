@@ -1,0 +1,3 @@
+# Keeps the repository's README off the public website. Nothing else is changed.
+exclude:
+  - README.md
