@@ -943,7 +943,7 @@
       var k = clamp(tip.x / 160, 0, 1); sg.setAttribute('fill', 'rgb(' + Math.round(lerp(255, 166, k)) + ',' + Math.round(lerp(90, 175, k)) + ',' + Math.round(lerp(109, 255, k)) + ')'); }
     else { sp.setAttribute('opacity', 0); sg.setAttribute('opacity', 0); }
   }
-  var tc = 0, last = null, speed = 1.9, done = false;   // 1.9 = the whole animation in about 1.5 seconds
+  var tc = 0, last = null, speed = 1, done = false;   // 1 = the whole animation in about 2.9 seconds
   function finish() {
     if (done) return; done = true;
     try { localStorage.setItem('ng-intro', String(Date.now())); } catch (e) {}   // shown again after 30 days
@@ -963,6 +963,9 @@
     if (tc >= GL1 - .02) root.classList.add('intro-land');   // swap in the real header logo once the gliding one is on it
     if (tc >= GL1) finish(); else requestAnimationFrame(frame);
   }
+  // site.css shows the page after 3 s in case this script never runs. The animation itself takes about 2.9 s,
+  // so once this script is running it sets its own limit of 5 s instead.
+  host.style.animation = 'none'; brand.style.animation = 'none'; setTimeout(finish, 5000);
   seek(0); requestAnimationFrame(frame);
 })();
 </script>
