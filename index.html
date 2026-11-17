@@ -25,7 +25,7 @@
 <link rel="preload" href="assets/fonts/geist-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css?v=20261112">
 <!-- Opening logo animation. To turn it off, delete the next line. -->
-<script>try{var q=/[?&]intro\b/.test(location.search),seen=+localStorage.getItem('ng-intro')||0;if(!navigator.webdriver&&(q||(!location.hash&&Date.now()-seen>2592e6))&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')}catch(e){}</script>
+<script>try{if(!navigator.webdriver&&(/[?&]intro\b/.test(location.search)||!location.hash)&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')}catch(e){}</script>
 <script>
   // Google Analytics 4: off until an ID is pasted between the quotes, like 'G-XXXXXXXXXX'
   window.GA_MEASUREMENT_ID = '';
@@ -946,7 +946,6 @@
   var tc = 0, last = null, speed = 1, done = false;   // 1 = the whole animation in about 2.9 seconds
   function finish() {
     if (done) return; done = true;
-    try { localStorage.setItem('ng-intro', String(Date.now())); } catch (e) {}   // shown again after 30 days
     root.classList.remove('intro-on', 'intro-land'); if (host.parentNode) host.parentNode.removeChild(host);
     ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (ev) { window.removeEventListener(ev, skip, true); });
     window.removeEventListener('resize', onResize);
