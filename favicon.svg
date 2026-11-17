@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="64" height="64" role="img" aria-label="Nunn Group">
+<title>Nunn Group</title>
+<circle id="plate" cx="500" cy="500" r="498" fill="#FFFFFF"/>
+<defs><linearGradient id="nunn-gradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0"><stop offset="0" stop-color="#800000"/><stop offset="1" stop-color="#2F3DA6"/></linearGradient></defs>
+<path id="monogram" fill="url(#nunn-gradient)" d="M60.68 738.74A500 500 0 0 1 899.74 199.65L778.76 199.65A409.77 409.77 0 0 0 113.63 636.5ZM74.61 762.77L349.69 231.57L495.95 231.57L595.46 423.73L525.78 545.86L422.48 346.4L198.97 778.02A409.77 409.77 0 0 0 901.46 582.1L728.67 582.1L781.7 489.15L999.88 489.15A500 500 0 0 1 74.61 762.77ZM455.2 784.08L351.09 583.03L422.13 458.51L521.26 649.94L759.94 231.57L893.9 231.57L578.7 784.08Z"/>
+</svg>

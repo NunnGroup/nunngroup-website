@@ -5,15 +5,19 @@ The Nunn Group LLC website, hosted on GitHub Pages. Built November 6, 2026.
 ## What's here
 - `index.html`: the homepage
 - `privacy.html`: the privacy notice (linked in the footer)
-- `404.html`: shown for broken or old links
+- `404.html`: shown for broken links
+- `contact.html`, `home.html`, `welcome.html`, `classes.html`: send links from the old Squarespace site to the new one
 - `assets/css/site.css`: colors, fonts, and layout
 - `assets/img`: logos, photos, the DBE seal, and the social preview image (`og-image.jpg`)
-- `assets/video`: the 1-minute overview video (MP4 and WebM) and its cover image
+- `assets/video`: the 1-minute overview video in two cuts, wide and tall (MP4 and WebM), and their cover images
 - `assets/fonts`: the Geist typeface (free to use under the SIL Open Font License, included as `OFL.txt`)
-- `favicon.ico`, `apple-touch-icon.png`: browser tab and phone home screen icons
+- `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`: browser tab and phone home screen icons
 - `robots.txt` and `sitemap.xml`: for search engines
-- `.nojekyll`: tells GitHub to publish the files exactly as they are. Don't delete it.
+- `_config.yml`: keeps this README and the CNAME file off the public site. Don't delete it.
 - `CNAME`: GitHub adds this when the custom domain is set. Don't delete it.
+
+## Logo
+The logo changed in November 2026: the NG monogram replaced the circle N. The header shows `assets/img/logo-white.svg` and the footer shows `assets/img/logo-color.svg`. `assets/img/logo-color.png` is the copy search engines read, and `logo-white.png` is a spare. The tab and home screen icons are `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, and `assets/img/icon-192.png`. The logo is also drawn into the opening animation, both cuts of the overview video, their cover images, and the social preview image, so a future logo change means redoing those too. The master files are in the Nunn Group Logo Pack. If an icon or the social preview image is replaced again, raise the `?v=2` after its name in `index.html`, `privacy.html`, and `404.html`, so browsers fetch the new file.
 
 ## Change text
 1. Open `index.html` in this repository and click the pencil icon (Edit).
@@ -42,7 +46,7 @@ To hide the seal, open `index.html`, find `DBE SEAL START`, and delete everythin
 The "Watch the overview" button on Marc's photo plays `assets/video/nunn-group-overview.mp4`. Phones held upright play a tall version with larger type instead, `assets/video/nunn-group-overview-tall.mp4`. To swap in a new version of either one, upload new files with the same names. If the length changes, also update "1:00" on the button, "1 minute" in the video window, the transcript under the video, and the `duration` in the VideoObject data near the top of `index.html`. To remove the video, delete the line in `index.html` that starts with `<button type="button" class="play"`.
 
 ## Opening animation
-When someone opens the homepage, the logo animates (the sun rises, the N is etched through it) and then glides into the top-left corner. It takes about 1.5 seconds and plays once every 30 days on each device. It does not play on links that go straight to a section, such as /#contact. Any tap, click, scroll, or key press skips it. It never plays for visitors who have "reduce motion" turned on, or for search engines. To watch it again, open https://www.nunngroupllc.com/?intro. To turn it off, open `index.html`, find `Opening logo animation` near the top, delete the line right below it, and commit the change.
+When someone opens the homepage, the logo animates (the sun rises, the NG monogram is etched out of it) and then glides into the top-left corner. It takes about 1.5 seconds and plays once every 30 days on each device. It does not play on links that go straight to a section, such as /#contact. Any tap, click, scroll, or key press skips it. It never plays for visitors who have "reduce motion" turned on, or for search engines. To watch it again, open https://www.nunngroupllc.com/?intro. To turn it off, open `index.html`, find `Opening logo animation` near the top, delete the line right below it, and commit the change.
 
 ## Analytics
 Off until a Google Analytics 4 Measurement ID is added. In `index.html`, find `GA_MEASUREMENT_ID = ''` near the top and paste the ID between the quotes (it looks like `G-XXXXXXXXXX`). It then records visits, plus these events: booking clicks (`book_call_click`), messages sent (`generate_lead`), phone and email clicks (`phone_click`, `email_click`), growth check results (`growth_check_complete`, `growth_check_send`), video plays (`video_play`), and capabilities statement requests (`capabilities_request`).

@@ -1,3 +1,5 @@
-# Keeps the repository's README off the public website. Nothing else is changed.
+# Keeps the repository's README off the public website.
+# CNAME is listed too, because GitHub only hides it by itself when no list is set here.
 exclude:
   - README.md
+  - CNAME
